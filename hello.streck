@@ -10,7 +10,7 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
       DEBET A5020 WITH priceExclVat
       DEBET A2641 WITH vat
       CREDIT A2440 WITH priceInclVat
-    }
+    } COMMENT 'Payment for power usage (' + comment + ')'
     BOOKKEEP organization {
       DEBET A2440 WITH priceInclVat
       CREDIT A1920 WITH priceInclVat
