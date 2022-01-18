@@ -7,3 +7,4 @@ class InstantCommand(sublime_plugin.TextCommand):
       text = timestamp.strftime("%Y-%m-%d %H:%M:%S ")
       self.view.insert(edit,first_is_caret_sel[0].begin(),text)
 
+
