@@ -102,4 +102,3 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
 
 2022-05-01 00:00:00 PRINT 'simulation end.'
 
-
