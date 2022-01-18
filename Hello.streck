@@ -75,8 +75,8 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
     /* we are profitable. */
   END
    
-  /* the Monte-Carlo simulator is automatically started when the first 
-   stochastic variable is computed. I.e at line 41 in this source file. */
+  /* the Monte-Carlo simulator is started when the first stochastic 
+   variable is computed. I.e at line 41 in this source file. */
    
 2022-05-01 00:00:00 
   VAR sweSales                  =   123.43
