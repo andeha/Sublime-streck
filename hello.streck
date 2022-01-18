@@ -95,10 +95,10 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
   PRINT 'Annual Report'
    
   PRINT 'Income Statement'
-  DISPLAY TABLE FROM 'IncomeStatement.table'
+  DISPLAY TABLE FROM 'incomestatement.table'
    
   PRINT 'Balance Sheet'
-  DISPLAY TABLE FROM 'BalanceSheet.table'
+  DISPLAY TABLE FROM 'balancesheet.table'
 
 2022-05-01 00:00:00 PRINT 'simulation end.'
 
