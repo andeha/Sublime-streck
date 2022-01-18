@@ -1,0 +1,105 @@
+/*  Hello.streck | example event file illustrating the language when in business. */
+
+FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
+{
+  VAR vatPercentage = abs(-0.25)
+  VAR vat = vatPercentage * priceInclVat
+  VAR priceExclVat = priceInclVat - vat
+  DO
+    BOOKKEEP organization {
+      DEBET A5020 WITH priceExclVat
+      DEBET A2641 WITH vat
+      CREDIT A2440 WITH priceInclVat
+    }
+    BOOKKEEP organization {
+      DEBET A2440 WITH priceInclVat
+      CREDIT A1920 WITH priceInclVat
+    } COMMENT 'Payment for power usage (' + comment + ')'
+  ELSE BEFORE 2012-01-10 12:00:00
+    BOOKKEEP organization {
+      DEBET A5020 WITH priceInclVat
+      CREDIT A1920 WITH priceInclVat
+    } COMMENT 'Payment for power usage (' + comment + ')'
+  ELSE BEFORE 2010-01-10 12:00:00
+    PRINT 'Do nothing. We don\'t use any electricity'
+  END
+}
+
+2022-01-18 19:25:37 PRINT 'Hello 🤝 starting simulation.'
+2022-01-18 19:26:08 CREATE CURRENCY USD NAMED 'US Dollar'
+2022-01-18 19:26:34 CREATE CURRENCY EUR NAMED 'Euro'
+2022-01-18 19:26:35 EXCHANGE RATE 1.40 USD IS 1.00 EUR
+2022-01-18 19:27:17 CREATE ENTITY Company1 NAMED 'My Company' TRADING IN USD RESIDENT IN USA
+2022-01-18 19:27:18 Company1[VATOUT] = A2611
+2022-01-18 19:27:52 CREATE ACCOUNT A1510 WITH-ENTITY Company1 NAMED 'Kundfordringar'
+2022-01-18 19:28:26 CREATE ACCOUNT A1920 WITH-ENTITY Company1 NAMED 'Kassa och bank'
+2022-01-18 19:28:59 CREATE ACCOUNT A2440 WITH-ENTITY Company1 NAMED 'Leverantörsskulder'
+2022-01-18 21:04:29 CREATE ACCOUNT A2611 WITH-ENTITY Company1 NAMED 'Utgående Moms'
+2022-01-18 21:05:06 CREATE ACCOUNT A2641 WITH-ENTITY Company1 NAMED 'Ingående Moms'
+2022-01-18 21:06:29 CREATE ACCOUNT A2650 WITH-ENTITY Company1 NAMED 'Redovisningskonto för Moms'
+2022-01-18 21:07:32 SET A1920 IN Company1 TO 123.00 + NORMAL(-32.00, 5.00), 544.44 + UNIFORM(10.00, 50.00)
+2022-01-18 21:09:14 BOOKKEEP Company1 {
+  DEBET A1920 WITH 10.00
+  CREDIT A2641 WITH 9.00
+  CREDIT A2440 WITH 1.00
+} COMMENT 'Verificate 1'
+2022-01-18 21:12:34 CREATE SCHEDULE DaytimeWork 
+  STARTING 2022-01-18 21:13:16 
+  OCCURING BI-HOURLY 
+  ENDING 2022-01-18 21:13:26
+  {
+    VAR sales = 100.00 + NORMAL(100.00, 25.00)
+    VAR usdAmount = Convert(sales,EUR,USD)
+    BOOKKEEP Company1 {
+      DEBET A1920 WITH 10.00 + usdAmount
+      CREDIT Company1[VATOUT] WITH 9.00 + usdAmount
+      CREDIT A2440 WITH 1.00 + usdAmount
+    } COMMENT 'Verificate ' + INSTANCE
+  }
+2022-01-18 21:20:02 BREAK
+2022-01-18 21:20:12 DROP SCHEDULE DaytimeWork
+2022-01-18 21:44:04 RegisterPowerPurchase(Company1,1045.43,'February')
+2022-05-01 00:00:00 
+   
+  /*  
+   *  time to close the books. note that we illustrate scoped and 
+   *  unscoped expressions.
+   */
+   
+  VAR Company1_worldwidesales = 0.00
+  VAR Company1_purchases = 0.00
+
+  IF Company1_worldwidesales < Company1_purchases THEN
+    /* we are unprofitable. */
+  ELSE
+    /* we are profitable. */
+  END
+   
+  /* the Monte-Carlo simulator is automatically started when the first 
+   stochastic variable is computed. I.e at line 41 in this source file. */
+   
+2022-05-01 00:00:00 
+  VAR sweSales                  =   123.43
+  VAR euSales                   =  1032.34
+   
+  VAR assetsCash                =  6600.00
+  VAR assetsAccountsRecievable  =  6200.00
+  VAR assetsToolsAndEquipment   = 25000.00
+   
+  VAR liabilitiesNotesPayable   =  5000.00
+  VAR accountsPayable           = 25000.00
+   
+  VAR equityCapitalStock        =  7000.00
+  VAR equityRetainedEarnings    =   800.00
+   
+  PRINT 'Annual Report'
+   
+  PRINT 'Income Statement'
+  DISPLAY TABLE FROM 'IncomeStatement.table'
+   
+  PRINT 'Balance Sheet'
+  DISPLAY TABLE FROM 'BalanceSheet.table'
+
+2022-05-01 00:00:00 PRINT 'simulation end.'
+
+
