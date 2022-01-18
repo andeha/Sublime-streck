@@ -46,7 +46,7 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
 2022-01-18 21:12:34 CREATE SCHEDULE DaytimeWork 
   STARTING 2022-01-18 21:13:16 
   OCCURING BI-HOURLY 
-  ENDING 2022-01-18 21:13:26
+  /* ENDING 2022-07-01 00:00:00 */
   {
     VAR sales = 100.00 + NORMAL(100.00, 25.00)
     VAR usdAmount = Convert(sales,EUR,USD)
