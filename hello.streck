@@ -1,4 +1,4 @@
-/*  hello.streck | example file illustrating when the .streck language is in 'business'. */
+/*  hello.streck | example file illustrating when the language when in 'business'. */
 
 FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
 {
