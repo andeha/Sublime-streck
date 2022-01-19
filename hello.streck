@@ -1,28 +1,35 @@
-/*  hello.streck | example file illustrating when the language when in 'business'. */
+/*  hello.streck | example file illustrating the language when in 'business'. */
 
-FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
+FUNCTION RegisterPowerPurchase(organisation,price₋incl₋vat,comment)
 {
   VAR vatPercentage = abs(-0.25)
-  VAR vat = vatPercentage * priceInclVat
-  VAR priceExclVat = priceInclVat - vat
+  VAR vat = vatPercentage * price₋incl₋vat
+  VAR priceExclVat = price₋incl₋vat - vat
   DO
     BOOKKEEP organization {
-      DEBET A5020 WITH priceExclVat
-      DEBET A2641 WITH vat
-      CREDIT A2440 WITH priceInclVat
-    } COMMENT 'Payment for power usage (' + comment + ')'
+      DEBET A5020 WITH price₋excl₋vat
+      DEBET A2641 WITH price₋excl₋vat
+      CREDIT A2440 WITH price₋incl₋vat
+    }
     BOOKKEEP organization {
-      DEBET A2440 WITH priceInclVat
-      CREDIT A1920 WITH priceInclVat
+      DEBET A2440 WITH price₋incl₋vat
+      CREDIT A1920 WITH price₋incl₋vat
     } COMMENT 'Payment for power usage (' + comment + ')'
   ELSE BEFORE 2012-01-10 12:00:00
     BOOKKEEP organization {
-      DEBET A5020 WITH priceInclVat
-      CREDIT A1920 WITH priceInclVat
+      DEBET A5020 WITH price₋incl₋vat
+      CREDIT A1920 WITH price₋incl₋vat
     } COMMENT 'Payment for power usage (' + comment + ')'
   ELSE BEFORE 2010-01-10 12:00:00
     PRINT 'Do nothing. We don\'t use any electricity'
   END
+}
+
+FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋customers)
+{
+   VAR percentage = customers₋in₋region / total₋customers
+   RETURN percentage * (DEBETSUM(A3044,ThisAccountingYear,organisation) +
+    DEBETSUM(A3045,ThisAccountingYear,organisation)
 }
 
 2022-01-18 19:25:37 PRINT 'Hello 🤝 starting simulation.'
@@ -46,7 +53,7 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
 2022-01-18 21:12:34 CREATE SCHEDULE DaytimeWork 
   STARTING 2022-01-18 21:13:16 
   OCCURING BI-HOURLY 
-  /* ENDING 2022-07-01 00:00:00 */
+  /* ENDING 2022-01-18 21:13:26 */
   {
     VAR sales = 100.00 + NORMAL(100.00, 25.00)
     VAR usdAmount = Convert(sales,EUR,USD)
@@ -68,7 +75,7 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
    
   VAR Company1_worldwidesales = 0.00
   VAR Company1_purchases = 0.00
-
+   
   IF Company1_worldwidesales < Company1_purchases THEN
     /* we are unprofitable. */
   ELSE
@@ -99,6 +106,6 @@ FUNC RegisterPowerPurchase(organisation,priceInclVat,comment)
    
   PRINT 'Balance Sheet'
   DISPLAY TABLE FROM 'balancesheet.table'
-
+  
 2022-05-01 00:00:00 PRINT 'simulation end.'
 
