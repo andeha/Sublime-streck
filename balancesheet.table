@@ -1,0 +1,21 @@
+/*  balancesheet.table | an example balance sheet. */
+
+assetsCash                      DUP REPORT 'Cash'
+assetsAccountRevievable         DUP REPORT 'Accounts Recievable'
+assetsToolsAndEquipment         DUP REPORT 'Tools and equipment'
++ +
+REPORT BOLD 'Total'
+
+liabilitiesNotesPayable         DUP REPORT 'Notes Payable'
+accountsPayable                 DUP REPORT 'Accounts Payable'
++ DUP
+REPORT BOLD 'Total liabilities'
+
+equityCapitalStock              DUP REPORT 'Capital Stock'
+equityRetainedEarnings          DUP REPORT 'Retained Earnings'
++ DUP
+REPORT BOLD 'Total owners equity'
+
++
+REPORT BOLD 'Total'
+
