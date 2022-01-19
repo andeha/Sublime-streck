@@ -73,8 +73,17 @@ FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋cus
    *  unscoped expressions.
    */
    
-  VAR Company1_worldwidesales = 0.00
-  VAR Company1_purchases = 0.00
+  VAR Company1_worldwidesales = 
+   CREDITSUM(A3041,PreviousAccountingYear,Company1) +
+   CREDITSUM(A3046,PreviousAccountingYear,Company1) +
+   CREDITSUM(A3058,PreviousAccountingYear,Company1)
+
+  VAR Company1_purchases = 
+   CREDITSUM(A5800,PreviousAccountingYear) +
+   CREDITSUM(A6211,PreviousAccountingYear)
+
+  /* VAR Company1_salaries = ... */
+  /* VAR Company2_salaries = ... */
    
   IF Company1_worldwidesales < Company1_purchases THEN
     /* we are unprofitable. */
