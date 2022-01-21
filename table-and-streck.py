@@ -1,4 +1,4 @@
-#  table-and-streck.py | to be placed in the package file 'Turbin-languages.sublime-package'.
+#  table-and-streck.py | to be placed in the package 'Turbin-languages'.
 
 import sublime, sublime_plugin, datetime
 
