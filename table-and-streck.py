@@ -1,3 +1,5 @@
+#  table-and-streck.py | to be placed in the package file 'Turbin-languages.sublime-package'.
+
 import sublime, sublime_plugin, datetime
 
 class InstantCommand(sublime_plugin.TextCommand):
