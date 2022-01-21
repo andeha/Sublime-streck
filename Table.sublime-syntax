@@ -1,0 +1,26 @@
+%YAML 1.2  # Table.tmLanguage.sublime-syntax.
+---
+name: Table language
+uuid: 818fa47c-79a5-4d69-905d-88190386b2e8
+file_extensions: [table]
+scope: source.table
+
+contexts:
+
+  main:
+    - match: \b(DUP|REPORT|SWAP|BOLD)\b
+      scope: keyword.control.streck
+
+  strings:
+    - match: "\n"
+      comment: "Strings begin and end with double quotes."
+      scope: punctuation.definition.string.begin.table
+      push: inside_string
+  inside_string:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.double.table
+    - match: "\\."
+      scope: constant.character.escape.table
+    - match: "\""
+      scope: punctuation.definition.string.end.table
+      pop: true
