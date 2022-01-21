@@ -1,0 +1,28 @@
+%YAML 1.2  # Streck.tmLanguage.sublime-syntax.
+---
+name: Streck language
+uuid: e5a8a9c4-cb71-4006-84a5-30a3ad8553fe
+file_extensions: [streck]
+scope: source.streck
+
+variables:
+  ident: "[A-Za-z_][A-Za-z_0-9]*"
+
+contexts:
+
+  main:
+    - include: strings
+  
+  strings:
+    - match: "\""
+      comment: "strings begin and end with single quote."
+      scope: punctuation.definition.string.begin.streck
+      push: inside_string
+  inside_string:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.single.streck
+    - match: "\\."
+      scope: constant.character.escape.streck
+    - match: "\""
+      scope: punctuation.definition.string.end.streck
+      pop: true
