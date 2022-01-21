@@ -6,7 +6,6 @@ file_extensions: [streck]
 scope: source.streck
 
 variables:
-  identifier: "[A-Za-z_][A-Za-z_0-9]*"
   monetary: "[:digit:]+.[:digit:][:digit:]"
   date: "[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   time: "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
@@ -17,7 +16,7 @@ contexts:
   main:
     - include: strings
     - include: comment
-    - include: identifier
+    - include: ident
     - include: keywords
   
   strings:
@@ -43,7 +42,7 @@ contexts:
     - match: $
       pop: true
   
-  identifier:
+  ident:
     - match: "[a-z][A-Z][a-zA-Z0-9]*"
       scope: punctuation.definition.identifier.streck
       comment: "Identifier begin with a letter."
