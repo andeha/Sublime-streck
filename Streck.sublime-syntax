@@ -23,8 +23,8 @@ contexts:
     - match: "'"
       comment: "Strings begin and end with single quote."
       scope: punctuation.definition.string.begin.streck
-      push: inside_string
-  inside_string:
+      push: line_string
+  line_string:
     - meta_include_prototype: false
     - meta_scope: string.quoted.single.streck
     - match: "\\."
@@ -36,11 +36,11 @@ contexts:
   comment:
     - match: "//"
       scope: punctuation.definition.comment.streck
-      push: line_comment
-  line_comment:
-    - meta_scope: comment.line.streck
-    - match: $
-      pop: true
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.streck
+        - match: $
+          pop: true
   
   ident:
     - match: "[a-z][A-Z][a-zA-Z0-9]*"
