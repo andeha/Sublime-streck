@@ -6,8 +6,8 @@ file_extensions: [streck]
 scope: source.streck
 
 variables:
-  monetary: "[:digit:]+.[:digit:][:digit:]"
   identifier: "[A-Za-z_][A-Za-z_0-9]*"
+  monetary: "[:digit:]+.[:digit:][:digit:]"
   date: "[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   time: "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
   instant: "[:date:][:time:]"
@@ -17,6 +17,8 @@ contexts:
   main:
     - include: strings
     - include: comment
+    - include: identifier
+    - include: keywords
   
   strings:
     - match: "'"
@@ -44,3 +46,9 @@ contexts:
   identifier:
     - match: "[a-z][A-Z][a-zA-Z0-9]*"
       scope: punctuation.definition.identifier.streck
+      comment: "Identifier begin with a letter."
+  
+  keywords:
+   - match: \b(BOOKKEEP|SET|PRINT|FUNCTION|VAR|DO|ELSE|BEFORE|DEBET|CREDIT|END)\b
+     scope: keyword.control.streck
+
