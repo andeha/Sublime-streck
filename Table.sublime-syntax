@@ -10,13 +10,13 @@ contexts:
   main:
     - match: \b(DUP|POP|REPORT|SWAP|+|-|*|/|BOLD)\b
       scope: keyword.control.table
-
+  
   strings:
     - match: "'"
       comment: "Strings begin and end with single quotes."
       scope: punctuation.definition.string.begin.table
-      push: inside_string
-  inside_string:
+      push: line_string
+  line_string:
     - meta_include_prototype: false
     - meta_scope: string.quoted.single.table
     - match: "\\."
@@ -28,11 +28,11 @@ contexts:
   comment:
     - match: "//"
       scope: punctuation.definition.comment.table
-      push: line_comment
-  line_comment:
-    - meta_scope: comment.line.table
-      match: $
-      pop: true
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.table
+          match: $
+          pop: true
 
   identifier:
     - match: "[a-zA-Z][a-zA-Z0-9]*"
