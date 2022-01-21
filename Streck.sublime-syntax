@@ -6,12 +6,17 @@ file_extensions: [streck]
 scope: source.streck
 
 variables:
-  ident: "[A-Za-z_][A-Za-z_0-9]*"
+  monetary: "[:digit:]+.[:digit:][:digit:]"
+  identifier: "[A-Za-z_][A-Za-z_0-9]*"
+  date: "[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+  time: "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
+  instant: "[:date:][:time:]"
 
 contexts:
 
   main:
     - include: strings
+    - include: comment
   
   strings:
     - match: "\""
@@ -26,3 +31,14 @@ contexts:
     - match: "\""
       scope: punctuation.definition.string.end.streck
       pop: true
+  
+  comment:
+    - match: "//"
+      scope: punctuation.definition.comment.streck
+      push: line_comment
+  line_comment:
+    - meta_scope: comment.line.streck
+    - match: $
+      pop: true
+
+
