@@ -8,8 +8,10 @@ scope: source.table
 contexts:
 
   main:
-    - match: \b(DUP|POP|REPORT|SWAP|+|-|*|/|BOLD)\b
-      scope: keyword.control.table
+    - include: keywords
+    - include: strings
+    - include: comments
+    - include: ident
   
   strings:
     - match: "'"
@@ -33,9 +35,13 @@ contexts:
         - meta_scope: comment.line.table
           match: $
           pop: true
-
-  identifier:
+  
+  ident:
     - match: "[a-zA-Z][a-zA-Z0-9]*"
       comment: "Identifier begin with a letter."
       scope: puctuation.definition.identifier.table
-
+  
+  keywords:
+    - match: \b(DUP|POP|REPORT|SWAP|+|-|*|/|BOLD)\b
+      scope: keyword.control.table
+  
