@@ -1,4 +1,4 @@
-/*  hello.streck | example file illustrating the language when in 'business'. */
+/abc  hello.streck | example file illustrating the language when in 'business'. abc/
 
 FUNCTION RegisterPowerPurchase(organisation,price₋incl₋vat,comment)
 {
@@ -21,15 +21,15 @@ FUNCTION RegisterPowerPurchase(organisation,price₋incl₋vat,comment)
       CREDIT A1920 WITH price₋incl₋vat
     } COMMENT 'Payment for power usage (' + comment + ')'
   ELSE BEFORE 2010-01-10 12:00:00
-    PRINT 'Do nothing. We don\'t use any electricity'
+    PRINT 'Do nothing. We don\t use any electricity'
   END
 }
 
 FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋customers)
 {
    VAR percentage = customers₋in₋region / total₋customers
-   RETURN percentage * (DEBETSUM(A3044,ThisAccountingYear,organisation) +
-    DEBETSUM(A3045,ThisAccountingYear,organisation)
+   RETURN percentage * (Debetsum(A3044,ThisAccountingYear,organisation) +
+    Debetsum(A3045,ThisAccountingYear,organisation)
 }
 
 2022-01-18 19:25:37 PRINT 'Hello 🤝 starting simulation.'
@@ -44,7 +44,7 @@ FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋cus
 2022-01-18 21:04:29 CREATE ACCOUNT A2611 WITH-ENTITY Company1 NAMED 'Utgående Moms'
 2022-01-18 21:05:06 CREATE ACCOUNT A2641 WITH-ENTITY Company1 NAMED 'Ingående Moms'
 2022-01-18 21:06:29 CREATE ACCOUNT A2650 WITH-ENTITY Company1 NAMED 'Redovisningskonto för Moms'
-2022-01-18 21:07:32 SET A1920 IN Company1 TO 123.00 + NORMAL(-32.00, 5.00), 544.44 + UNIFORM(10.00, 50.00)
+2022-01-18 21:07:32 SET A1920 IN Company1 TO 123.00 + Normal(-32.00, 5.00), 544.44 + Uniform(10.00, 50.00)
 2022-01-18 21:09:14 BOOKKEEP Company1 {
   DEBET A1920 WITH 10.00
   CREDIT A2641 WITH 9.00
@@ -55,7 +55,7 @@ FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋cus
   OCCURING BI-HOURLY 
   /* ENDING 2022-01-18 21:13:26 */
   {
-    VAR sales = 100.00 + NORMAL(100.00, 25.00)
+    VAR sales = 100.00 + Normal(100.00, 25.00)
     VAR usdAmount = Convert(sales,EUR,USD)
     BOOKKEEP Company1 {
       DEBET A1920 WITH 10.00 + usdAmount
@@ -74,13 +74,13 @@ FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋cus
    */
    
   VAR Company1_worldwidesales = 
-   CREDITSUM(A3041,PreviousAccountingYear,Company1) +
-   CREDITSUM(A3046,PreviousAccountingYear,Company1) +
-   CREDITSUM(A3058,PreviousAccountingYear,Company1)
+   Creditsum(A3041,PreviousAccountingYear,Company1) +
+   Creditsum(A3046,PreviousAccountingYear,Company1) +
+   Creditsum(A3058,PreviousAccountingYear,Company1)
 
   VAR Company1_purchases = 
-   CREDITSUM(A5800,PreviousAccountingYear) +
-   CREDITSUM(A6211,PreviousAccountingYear)
+   Creditsum(A5800,PreviousAccountingYear) +
+   Creditsum(A6211,PreviousAccountingYear)
 
   /* VAR Company1_salaries = ... */
   /* VAR Company2_salaries = ... */
