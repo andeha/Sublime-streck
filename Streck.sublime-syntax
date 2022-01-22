@@ -8,7 +8,7 @@ scope: source.streck
 version: 2
 
 variables:
-  monetary: "[:digit:]+.[:digit:][:digit:]"
+  monetary: "[[:digit:]]+.[[:digit:]][[:digit:]]"
   date: "[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   time: "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
   letter: "[a-zA-Z₋]"
@@ -17,7 +17,15 @@ variables:
 contexts:
 
   main:
-    - include: keywords
+    - include: keyword_1
+    - include: keyword_2
+    - include: keyword_definition
+    - include: keyword_3
+    - include: keyword_4
+    - include: country_code
+    - include: intrinsic_var
+    - include: intrinsic_func
+    - include: cyclicity
     - include: ident
     - include: strings
     - include: comment
@@ -45,17 +53,17 @@ contexts:
         - meta_scope: comment.line.streck
         - match: $
           pop: true
-    - match: "/abc"
+    - match: /\*
       scope: punctuation.definition.comment.streck
       push:
         - meta_scope: comment.block.streck
-        - match: "abc/"
+        - match: \*/
           pop: true
   
   monetary:
     - match: "[:monetary:]"
       comment: "Monetary always given with two decimals."
-      scope: punctuation.definition.monetary.streck
+      scope: constant.numeric.monetary.streck
   
   instant:
     - match: "[:date:][:time:]"
@@ -63,11 +71,44 @@ contexts:
       scope: punctuation.definition.instant.streck
   
   ident:
-    - match: "[a-zA-Z][a-zA-Z0-9]*"
+    - match: "[:letter:][:letterAltDigit:]*"
       comment: "An identifier begin with a letter."
-      scope: punctuation.definition.identifier.streck
+      scope: variable.other.readwrite.streck
   
-  keywords:
-   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|PRINT|VAR|DO|ELSE|BEFORE|END|SET|FUNCTION)\b
+  country_code:
+    - match: \b(USA|SWE)
+      scope: variable.other.definition.streck
+  
+  intrinsic_var:
+    - match: \b(PreviousAccountingYear|ThisAccountingYear)\b
+      scope: variable.language.streck
+  
+  intrinsic_func:
+    - match: \b(Uniform|Normal|Debetsum|Creditsum|Convert)\b
+      scope: variable.other.definition.streck
+  
+  cyclicity:
+    - match: \b(HOURLY|BI\-HOURLY)\b
+      scope: variable.language.streck
+  
+  keyword_4:
+    - match: \b(EXCHANGE|RATE)\b
+      scope: keyword.control.streck
+  
+  keyword_3:
+   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|CURRENCY|STARTING|OCCURING|ENDING)\b
      scope: keyword.control.streck
+  
+  keyword_definition:
+    - match: \b(FUNCTION)\b
+      scope: keyword.declaration.streck
+  
+  keyword_2:
+   - match: \b(CREATE|DROP|ENTITY|WITH\-ENTITY|NAMED|ACCOUNT|IS|RESIDENT|TRADING|IN|TO)\b
+     scope: keyword.declaration.streck
+  
+  keyword_1:
+   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|DO|IF|THEN|ELSE|BEFORE|END|SET|RETURN)\b
+     scope: keyword.control.streck
+
 
