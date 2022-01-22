@@ -9,12 +9,12 @@ version: 2
 contexts:
 
   main:
-    - include: keywords
-    - include: strings
-    - include: comments
+    - include: keyword
+    - include: string
+    - include: comment
     - include: ident
   
-  strings:
+  string:
     - match: "'"
       comment: "Strings begin and end with single quotes."
       scope: punctuation.definition.string.begin.table
@@ -28,7 +28,7 @@ contexts:
       scope: punctuation.definition.string.end.table
       pop: true
   
-  comments:
+  comment:
     - match: "//"
       scope: punctuation.definition.comment.table
       push:
@@ -48,7 +48,7 @@ contexts:
       comment: "Identifier begin with a letter."
       scope: puctuation.definition.identifier.table
   
-  keywords:
+  keyword:
     - match: \b(DUP|POP|REPORT|SWAP|+|-|*|/|BOLD)\b
       scope: keyword.control.table
   
