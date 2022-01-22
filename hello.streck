@@ -1,4 +1,4 @@
-/abc  hello.streck | example file illustrating the language when in 'business'. abc/
+/*  hello.streck | example file illustrating the language when in 'business'. */
 
 FUNCTION RegisterPowerPurchase(organisation,price₋incl₋vat,comment)
 {
@@ -68,7 +68,7 @@ FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋cus
 2022-01-18 21:44:04 RegisterPowerPurchase(Company1,1045.43,'February')
 2022-05-01 00:00:00 
    
-  /*  
+  /* 
    *  time to close the books. note that we illustrate scoped and 
    *  unscoped expressions.
    */
