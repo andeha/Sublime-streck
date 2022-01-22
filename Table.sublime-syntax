@@ -4,6 +4,7 @@ name: Table language
 uuid: 818fa47c-79a5-4d69-905d-88190386b2e8
 file_extensions: [table]
 scope: source.table
+version: 2
 
 contexts:
 
@@ -27,13 +28,19 @@ contexts:
       scope: punctuation.definition.string.end.table
       pop: true
   
-  comment:
+  comments:
     - match: "//"
       scope: punctuation.definition.comment.table
       push:
         # This is an anonymous context push for brevity.
         - meta_scope: comment.line.table
           match: $
+          pop: true
+    - match: "/abc"
+      scope: punctuation.definition.comment.table
+      push:
+        - meta_scope: comment.block.streck
+        - match: "abc/"
           pop: true
   
   ident:
