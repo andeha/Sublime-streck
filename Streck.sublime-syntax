@@ -17,11 +17,13 @@ variables:
 contexts:
 
   main:
-    - include: keyword_1
-    - include: keyword_2
-    - include: keyword_definition
-    - include: keyword_3
-    - include: keyword_4
+    - include: keyword_natural
+    - include: keyword_conditional
+    - include: keyword_constructor
+    - include: function_definition
+    - include: keyword_schedule
+    - include: keyword_5
+    - include: keyword_7
     - include: country_code
     - include: intrinsic_var
     - include: intrinsic_func
@@ -63,52 +65,59 @@ contexts:
   monetary:
     - match: "[:monetary:]"
       comment: "Monetary always given with two decimals."
-      scope: constant.numeric.monetary.streck
+      scope: constant.numeric.integer.monetary.streck
   
   instant:
     - match: "[:date:][:time:]"
       comment: "An instant is a date then a time."
-      scope: punctuation.definition.instant.streck
+      scope: constant.other.instant.streck
   
   ident:
     - match: "[:letter:][:letterAltDigit:]*"
       comment: "An identifier begin with a letter."
-      scope: variable.other.readwrite.streck
+      scope: entity.name.streck
   
   country_code:
-    - match: \b(USA|SWE)
+    - match: \b(USA|SWE|ALB)
       scope: variable.other.definition.streck
   
   intrinsic_var:
     - match: \b(PreviousAccountingYear|ThisAccountingYear)\b
-      scope: variable.language.streck
+      scope: support.constant.streck
   
   intrinsic_func:
     - match: \b(Uniform|Normal|Debetsum|Creditsum|Convert)\b
-      scope: variable.other.definition.streck
+      scope: support.function.streck
   
   cyclicity:
-    - match: \b(HOURLY|BI\-HOURLY)\b
-      scope: variable.language.streck
+    - match: \b(MONTHLY|HOURLY|BI\-HOURLY)\b
+      scope: constant.language.streck
   
-  keyword_4:
-    - match: \b(EXCHANGE|RATE)\b
+  keyword_7:
+    - match: \b(EXCHANGE|RATE|CURRENCY)\b
       scope: keyword.control.streck
   
-  keyword_3:
-   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|CURRENCY|STARTING|OCCURING|ENDING)\b
+  keyword_5:
+   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP-SCHEDULE)\b
      scope: keyword.control.streck
   
-  keyword_definition:
-    - match: \b(FUNCTION)\b
-      scope: keyword.declaration.streck
-  
-  keyword_2:
-   - match: \b(CREATE|DROP|ENTITY|WITH\-ENTITY|NAMED|ACCOUNT|IS|RESIDENT|TRADING|IN|TO)\b
+  function_definition:
+   - match: \b(FUNCTION)\b
      scope: keyword.declaration.streck
   
-  keyword_1:
-   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|DO|IF|THEN|ELSE|BEFORE|END|SET|RETURN)\b
+  keyword_schedule:
+   - match: \b(DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING)\b
      scope: keyword.control.streck
+  
+  keyword_constructor:
+   - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
+     scope: keyword.control.streck
+  
+  keyword_conditional:
+   - match: \b(DO|IF|THEN|ELSE|END)\b
+     scope: keyword.control.conditional.streck
 
+  keyword_natural:
+   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN|BEFORE)\b
+     scope: keyword.control.streck
 
