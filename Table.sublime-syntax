@@ -10,6 +10,7 @@ contexts:
 
   main:
     - include: keyword
+    - include: keyword_operation
     - include: string
     - include: comment
     - include: ident
@@ -44,11 +45,15 @@ contexts:
           pop: true
   
   ident:
-    - match: "[a-zA-Z][a-zA-Z0-9]*"
+    - match: "[a-zA-Z₋][a-zA-Z0-9₋]*"
       comment: "Identifier begin with a letter."
-      scope: puctuation.definition.identifier.table
+      scope: entity.name.table
+  
+  keyword_operation:
+    - match: \b(\+|\-|\*|/)\b
+      scope: keyword.operator.table
   
   keyword:
-    - match: \b(DUP|POP|REPORT|SWAP|+|-|*|/|BOLD)\b
+    - match: \b(DUP|POP|REPORT|SWAP|BOLD)\b
       scope: keyword.control.table
   
