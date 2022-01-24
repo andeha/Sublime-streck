@@ -80,7 +80,7 @@ contexts:
       scope: entity.name.streck
   
   country_code:
-    - match: \b(USA|SWE|ALB)
+    - match: \b(ABW|AFG|AGO|ALB|NOR|SWE|USA|ZMB|ZWE)
       scope: variable.other.definition.streck
   
   intrinsic_variable:
@@ -116,18 +116,19 @@ contexts:
      scope: keyword.control.streck
   
   keyword_logic_operation:
-   - match: '\b(&&||||!|^)\b'
+   - match: '\b(&&|\|\||\!|\^)\b'
      scope: keyword.operator.table
   
   keyword_arithmetic_operation:
-   - match: \b(\+|\-|\*|/)\b
+   - match: '\b(\+|\-|\*|/)\b'
      scope: keyword.operator.table
   
   keyword_conditional:
-   - match: \b(DO|IF|THEN|ELSE|END)\b
+   - match: \b(DO|IF|THEN|ELSE|END|BEFORE)\b
      scope: keyword.control.conditional.streck
   
   keyword_natural:
-   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN|BEFORE)\b
+   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN)\b
      scope: keyword.control.streck
+
 
