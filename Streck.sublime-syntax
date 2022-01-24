@@ -100,7 +100,7 @@ contexts:
       scope: keyword.control.streck
   
   keyword_lineartime:
-   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP\-SCHEDULE)\b
+   - match: "\\b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP\\-SCHEDULE)\\b"
      scope: keyword.control.streck
   
   function_definition:
@@ -112,16 +112,16 @@ contexts:
      scope: keyword.control.streck
   
   keyword_constructist:
-   - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
+   - match: "\\b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\\-ENTITY|TO)\\b"
      scope: keyword.control.streck
   
   keyword_logic_operation:
-   - match: '\b(&&|\|\||\!|\^)\b'
-     scope: keyword.operator.table
+   - match: \&\&|\|\||!|\^
+     scope: keyword.operator.streck
   
   keyword_arithmetic_operation:
-   - match: '\b(\+|\-|\*|/)\b'
-     scope: keyword.operator.table
+   - match: \+|\-|\*|/
+     scope: keyword.operator.streck
   
   keyword_conditional:
    - match: \b(DO|IF|THEN|ELSE|END|BEFORE)\b
@@ -130,5 +130,3 @@ contexts:
   keyword_natural:
    - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN)\b
      scope: keyword.control.streck
-
-
