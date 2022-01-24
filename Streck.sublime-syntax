@@ -9,7 +9,7 @@ version: 2
 
 variables:
   monetary: "[[:digit:]]+.[[:digit:]][[:digit:]]"
-  date: "[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+  date: "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   time: "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
   letter: "[a-zA-Z₋]"
   letterAltDigit: "[a-zA-Z0-9₋]"
@@ -70,13 +70,13 @@ contexts:
       scope: constant.numeric.integer.monetary.streck
   
   instant:
-    - match: "[:date:][:time:]"
-      comment: "An instant is a date then a time."
+    - match: "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].*[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
+      comment: "An instant is a date then a time." # "[:date:][:time:]"
       scope: constant.other.instant.streck
   
   ident:
-    - match: "[:letter:][:letterAltDigit:]*"
-      comment: "An identifier begin with a letter."
+    - match: "[a-zA-Z₋][a-zA-Z0-9₋]*" # "[:letter:][:letterAltDigit:]*"
+      comment: "Identifier begins with a letter."
       scope: entity.name.streck
   
   country_code:
