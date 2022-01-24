@@ -37,23 +37,24 @@ contexts:
         - meta_scope: comment.line.table
           match: $
           pop: true
-    - match: "/abc"
+    - match: /abc
       scope: punctuation.definition.comment.table
       push:
         - meta_scope: comment.block.streck
-        - match: "abc/"
+        - match: abc/
           pop: true
   
   ident:
     - match: "[a-zA-Z₋][a-zA-Z0-9₋]*"
       comment: "Identifier begin with a letter."
-      scope: entity.name.table
+      scope: variable.other.table
   
   keyword_operation:
-    - match: \b(\+|\-|\*|/)\b
+    - match: \+|\-|\*|/
       scope: keyword.operator.table
   
   keyword:
     - match: \b(DUP|POP|REPORT|SWAP|BOLD)\b
       scope: keyword.control.table
   
+
