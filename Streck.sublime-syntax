@@ -8,11 +8,11 @@ scope: source.streck
 version: 2
 
 variables:
-  monetary: "[[:digit:]]+.[[:digit:]][[:digit:]]"
-  date: "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
-  time: "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
-  letter: "[a-zA-Z₋]"
-  letterAltDigit: "[a-zA-Z0-9₋]"
+  monetary: '[[:digit:]_]+.[[:digit:]_][[:digit:]_]'
+  date: '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'
+  time: '[0-9][0-9]:[0-9][0-9]:[0-9][0-9]'
+  letter: '[a-zA-Z₋]'
+  letterAltDigit: '[a-zA-Z0-9₋]'
 
 contexts:
 
@@ -34,7 +34,8 @@ contexts:
     - include: strings
     - include: comment
     - include: instant
-  
+    - include: monetary_value
+
   strings:
     - match: "'"
       comment: "Strings begin and end with single quote."
@@ -64,18 +65,18 @@ contexts:
         - match: \*/
           pop: true
   
-  monetary:
-    - match: "[:monetary:]"
+  monetary_value:
+    - match: ({{monetary}})
       comment: "Monetary always given with two decimals."
       scope: constant.numeric.integer.monetary.streck
   
   instant:
-    - match: "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].*[0-9][0-9]:[0-9][0-9]:[0-9][0-9]"
-      comment: "An instant is a date then a time." # "[:date:][:time:]"
+    - match: ({{date}}.*{{time}})
+      comment: "An instant is a date then a time."
       scope: constant.other.instant.streck
   
   ident:
-    - match: "[a-zA-Z₋][a-zA-Z0-9₋]*" # "[:letter:][:letterAltDigit:]*"
+    - match: ({{letter}}{{letterAltDigit}}*) # "[:letter:][:letterAltDigit:]*"
       comment: "Identifier begins with a letter."
       scope: entity.name.streck
   
