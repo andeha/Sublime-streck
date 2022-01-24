@@ -19,11 +19,12 @@ contexts:
   main:
     - include: keyword_natural
     - include: keyword_conditional
+    - include: keyword_arithmetic_operation
     - include: keyword_constructor
     - include: function_definition
     - include: keyword_schedule
-    - include: keyword_5
-    - include: keyword_7
+    - include: keyword_superflous
+    - include: keyword_linear
     - include: country_code
     - include: intrinsic_var
     - include: intrinsic_func
@@ -93,12 +94,12 @@ contexts:
     - match: \b(MONTHLY|HOURLY|BI\-HOURLY)\b
       scope: constant.language.streck
   
-  keyword_7:
+  keyword_superfluos:
     - match: \b(EXCHANGE|RATE|CURRENCY)\b
       scope: keyword.control.streck
   
-  keyword_5:
-   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP-SCHEDULE)\b
+  keyword_lineartime:
+   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP\-SCHEDULE)\b
      scope: keyword.control.streck
   
   function_definition:
@@ -113,10 +114,14 @@ contexts:
    - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
      scope: keyword.control.streck
   
+  keyword_arithmetic_operation:
+   - match: \b(\+|\-|\*|/)\b
+     scope: keyword.operator.table
+  
   keyword_conditional:
    - match: \b(DO|IF|THEN|ELSE|END)\b
      scope: keyword.control.conditional.streck
-
+  
   keyword_natural:
    - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN|BEFORE)\b
      scope: keyword.control.streck
