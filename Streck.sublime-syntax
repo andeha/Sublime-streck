@@ -20,14 +20,15 @@ contexts:
     - include: keyword_natural
     - include: keyword_conditional
     - include: keyword_arithmetic_operation
+    - include: keyword_logic_operation
     - include: keyword_constructist
     - include: function_definition
     - include: keyword_schedule
     - include: keyword_superfluous
     - include: keyword_linear
     - include: country_code
-    - include: intrinsic_var
-    - include: intrinsic_func
+    - include: intrinsic_variable
+    - include: intrinsic_function
     - include: cyclicity
     - include: ident
     - include: strings
@@ -82,11 +83,11 @@ contexts:
     - match: \b(USA|SWE|ALB)
       scope: variable.other.definition.streck
   
-  intrinsic_var:
+  intrinsic_variable:
     - match: \b(PreviousAccountingYear|ThisAccountingYear)\b
       scope: support.constant.streck
   
-  intrinsic_func:
+  intrinsic_function:
     - match: \b(Uniform|Normal|Debetsum|Creditsum|Convert)\b
       scope: support.function.streck
   
@@ -113,6 +114,10 @@ contexts:
   keyword_constructist:
    - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
      scope: keyword.control.streck
+  
+  keyword_logic_operation:
+   - match: \b('&&'|'||'|'!'|'^')\b
+     scope: keyword.operator.table
   
   keyword_arithmetic_operation:
    - match: \b(\+|\-|\*|/)\b
