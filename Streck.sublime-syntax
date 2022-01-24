@@ -34,7 +34,7 @@ contexts:
     - include: strings
     - include: comment
     - include: instant
-    - include: monetary_value
+    - include: figure
 
   strings:
     - match: "'"
@@ -65,7 +65,7 @@ contexts:
         - match: \*/
           pop: true
   
-  monetary_value:
+  figure:
     - match: ({{monetary}})
       comment: "Monetary always given with two decimals."
       scope: constant.numeric.integer.monetary.streck
