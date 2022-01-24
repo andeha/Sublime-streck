@@ -78,7 +78,7 @@ contexts:
   ident:
     - match: ({{letter}}{{letterAltDigit}}*) # "[:letter:][:letterAltDigit:]*"
       comment: "Identifier begins with a letter."
-      scope: entity.name.streck
+      scope: variable.other.streck
   
   country_code:
     - match: \b(ABW|AFG|AGO|ALB|NOR|SWE|USA|ZMB|ZWE)
