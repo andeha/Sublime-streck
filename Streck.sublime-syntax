@@ -25,7 +25,7 @@ contexts:
     - include: function_definition
     - include: keyword_schedule
     - include: keyword_superfluous
-    - include: keyword_linear
+    - include: keyword_lineartime
     - include: country_code
     - include: intrinsic_variable
     - include: intrinsic_function
@@ -100,7 +100,7 @@ contexts:
       scope: keyword.control.streck
   
   keyword_lineartime:
-   - match: "\\b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP\\-SCHEDULE)\\b"
+   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP\-SCHEDULE)\b
      scope: keyword.control.streck
   
   function_definition:
@@ -112,7 +112,7 @@ contexts:
      scope: keyword.control.streck
   
   keyword_constructist:
-   - match: "\\b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\\-ENTITY|TO)\\b"
+   - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
      scope: keyword.control.streck
   
   keyword_logic_operation:
@@ -130,3 +130,4 @@ contexts:
   keyword_natural:
    - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN)\b
      scope: keyword.control.streck
+
