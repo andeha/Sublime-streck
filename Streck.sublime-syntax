@@ -116,7 +116,7 @@ contexts:
      scope: keyword.control.streck
   
   keyword_logic_operation:
-   - match: \b('&&'|'||'|'!'|'^')\b
+   - match: '\b(&&||||!|^)\b'
      scope: keyword.operator.table
   
   keyword_arithmetic_operation:
