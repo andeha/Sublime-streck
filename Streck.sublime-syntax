@@ -23,7 +23,7 @@ contexts:
     - include: keyword_constructor
     - include: function_definition
     - include: keyword_schedule
-    - include: keyword_superflous
+    - include: keyword_superfluous
     - include: keyword_linear
     - include: country_code
     - include: intrinsic_var
@@ -94,7 +94,7 @@ contexts:
     - match: \b(MONTHLY|HOURLY|BI\-HOURLY)\b
       scope: constant.language.streck
   
-  keyword_superfluos:
+  keyword_superfluous:
     - match: \b(EXCHANGE|RATE|CURRENCY)\b
       scope: keyword.control.streck
   
