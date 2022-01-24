@@ -20,7 +20,7 @@ contexts:
     - include: keyword_natural
     - include: keyword_conditional
     - include: keyword_arithmetic_operation
-    - include: keyword_constructor
+    - include: keyword_constructist
     - include: function_definition
     - include: keyword_schedule
     - include: keyword_superfluous
@@ -110,7 +110,7 @@ contexts:
    - match: \b(DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING)\b
      scope: keyword.control.streck
   
-  keyword_constructor:
+  keyword_constructist:
    - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
      scope: keyword.control.streck
   
