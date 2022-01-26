@@ -1,6 +1,6 @@
 /*  hello.streck | example file illustrating the language when in 'business'. */
 
-FUNCTION RegisterPowerPurchase(organisation,price₋incl₋vat,comment)
+FUNCTION RegisterPowerPurchase (organisation,price₋incl₋vat,comment)
 {
   VAR vatPercentage = abs(-0.25)
   VAR vat = vatPercentage * price₋incl₋vat
@@ -25,11 +25,11 @@ FUNCTION RegisterPowerPurchase(organisation,price₋incl₋vat,comment)
   END
 }
 
-FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋customers)
+FUNCTION Distribution₋revenue (organisation,customers₋in₋region,total₋customers)
 {
    VAR percentage = customers₋in₋region / total₋customers
    RETURN percentage * (Debetsum(A3044,ThisAccountingYear,organisation) +
-    Debetsum(A3045,ThisAccountingYear,organisation)
+     Debetsum(A3045,ThisAccountingYear,organisation)
 }
 
 2022-01-18 19:25:37 PRINT 'Hello 🤝 starting simulation.'
@@ -64,7 +64,7 @@ FUNCTION Distribution₋revenue(organisation,customers₋in₋region,total₋cus
     } COMMENT 'Verificate ' + INSTANCE
   }
 2022-01-18 21:20:02 BREAK
-2022-01-18 21:20:12 DROP SCHEDULE DaytimeWork
+2022-01-18 21:20:12 DROP-SCHEDULE DaytimeWork
 2022-01-18 21:44:04 RegisterPowerPurchase(Company1,1045.43,'February')
 2022-05-01 00:00:00 
    
