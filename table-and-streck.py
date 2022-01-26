@@ -12,7 +12,7 @@ def Instant():
    timestamp = datetime.datetime.now()
    return timestamp.strftime("%Y-%m-%d %H:%M:%S ")
 
-class TurbinCompletionsEventListener(sublime_plugin.EventListener):
+class CompletionListener(sublime_plugin.EventListener):
    def on_query_completions(self, view, prefix, locations):
      return sublime.CompletionList(
        [
