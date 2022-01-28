@@ -41,14 +41,14 @@ class CompletionListener(sublime_plugin.EventListener):
             "Form a company."
           ),
           sublime.CompletionItem(
-            "account", "'ACCOUNT REGISTERED'", 
+            "account", "'ACCOUNT REGISTERED'",
             Instant() + "CREATE ACCOUNT ${1:A1920} WITH-ENTITY ${2:Company1} NAMED '${0:Kassa och bank}'",
             sublime.COMPLETION_FORMAT_SNIPPET,
             (sublime.KIND_ID_SNIPPET, "A", "legal act"),
-            "Set-up a two-sided <i>zero-inited</i> timeserie.</code>."
+            "Set-up a two-sided <i>zero-inited</i> timeserie."
           ),
           sublime.CompletionItem(
-            "balance", "'ACCOUNT INITIALIZED'", 
+            "balance", "'ACCOUNT INITIALIZED'",
             Instant() + "SET ${1:A1920} IN ${2:Company1} TO ${3:123.00 + Normal(-32.00, 5.00)}, ${0:544.44 + Uniform(10.00, 50.00)}",
             sublime.COMPLETION_FORMAT_SNIPPET,
             (sublime.KIND_ID_SNIPPET, "A", "legal act"),
