@@ -28,7 +28,7 @@ class CompletionListener(sublime_plugin.EventListener):
             Instant() + "EXCHANGE RATE ${1:1.40} ${2:USD} IS ${3:1.00} ${4:EUR}",
             sublime.COMPLETION_FORMAT_SNIPPET,
             (sublime.KIND_ID_SNIPPET, "A", "legal act"),
-            "Update the relation between two currencies."
+            "Update a two currencies relation."
           ),
           sublime.CompletionItem(
             "entity", "'ENTITY RECOGNIZED'",
@@ -71,7 +71,7 @@ class CompletionListener(sublime_plugin.EventListener):
             "Include a function definition."
           ),
           sublime.CompletionItem(
-            "print", "'TEXT RELEASED'",
+            "print", "'COPY RELEASED'",
             Instant() + "PRINT '${1:Hello world}'",
             sublime.COMPLETION_FORMAT_SNIPPET,
             (sublime.KIND_ID_SNIPPET, "A", "legal act"),
@@ -97,4 +97,5 @@ class CompletionListener(sublime_plugin.EventListener):
             "Install a repetitious task such as changes in a set of timeseries."
           ),
        ], 0)
+
 
