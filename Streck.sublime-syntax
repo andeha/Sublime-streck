@@ -3,7 +3,7 @@
 name: Streck language
 uuid: e5a8a9c4-cb71-4006-84a5-30a3ad8553fe
 file_extensions: [streck]
-hidden_file_extensions: [event]
+hidden_file_extensions: [before event]
 scope: source.streck
 version: 2
 
@@ -12,73 +12,67 @@ variables:
   date: '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'
   time: '[0-9][0-9]:[0-9][0-9]:[0-9][0-9]'
   letter: '[a-zA-Z₋]'
-  letterAltDigit: '[a-zA-Z0-9₋]'
+  letter_alt_digit: '[a-zA-Z0-9₋]'
 
 contexts:
 
   main:
-    - include: keyword_natural
-    - include: keyword_conditional
-    - include: keyword_arithmetic_operation
-    - include: keyword_logic_operation
-    - include: keyword_constructist
-    - include: function_definition
-    - include: keyword_schedule
-    - include: keyword_superfluous
-    - include: keyword_lineartime
-    - include: country_code
-    - include: intrinsic_variable
-    - include: intrinsic_function
-    - include: cyclicity
-    - include: ident
-    - include: strings
-    - include: comment
-    - include: instant
-    - include: figure
-
-  strings:
-    - match: "'"
-      comment: "Strings begin and end with single quote."
-      scope: punctuation.definition.string.begin.streck
-      push: line_string
-  line_string:
-    - meta_include_prototype: false
-    - meta_scope: string.quoted.single.streck
-    - match: "\\."
-      scope: constant.character.escape.streck
-    - match: "'"
-      scope: punctuation.definition.string.end.streck
-      pop: true
-  
-  comment:
+    - match: "/\\*"
+      scope: punctuation.definition.comment.streck
+      push:
+        - meta_scope: comment.block.streck
+        - match: "\\*/"
+          scope: punctuation.definition.comment.streck
+          pop: true
     - match: "//"
       scope: punctuation.definition.comment.streck
       push:
         # This is an anonymous context push for brevity.
         - meta_scope: comment.line.streck
         - match: $
+          scope: punctuation.definition.comment.streck
           pop: true
-    - match: /\*
-      scope: punctuation.definition.comment.streck
+    - include: keyword_natural
+    - include: keyword_symbols
+    - include: keyword_conditional
+    - include: keyword_arithmetic_operation
+    - include: keyword_logic_operation
+    - include: keyword_constructist
+    - include: keyword_physical
+    - include: function_definition
+    - include: keyword_schedule
+    - include: keyword_superfluous
+    - include: keyword_lineartime
+    - include: intrinsic_function
+    - include: intrinsic_variable
+    - include: country_code
+    - include: cyclicity
+    - include: instant
+    - include: units_of_account
+    - match: ({{letter}}{{letter_alt_digit}}*)
+      comment: "Identifier begins with a letter."
+      scope: variable.other.streck
+    - match: "'"
+      comment: "Unicode sequences begin and end with a quote."
+      scope: punctuation.definition.string.begin.streck
       push:
-        - meta_scope: comment.block.streck
-        - match: \*/
+        - meta_include_prototype: false
+        - meta_scope: string.quoted.single.streck
+        - match: "''"
+          scope: string.quoted.single.streck
+        - match: "'"
+          scope: punctuation.definition.string.end.streck
           pop: true
   
-  figure:
+  units_of_account:
     - match: ({{monetary}})
       comment: "Monetary always given with two decimals."
       scope: constant.numeric.integer.monetary.streck
   
   instant:
     - match: ({{date}}.*{{time}})
-      comment: "An instant is a date then a time."
-      scope: constant.other.instant.streck
-  
-  ident:
-    - match: ({{letter}}{{letterAltDigit}}*) # "[:letter:][:letterAltDigit:]*"
-      comment: "Identifier begins with a letter."
-      scope: variable.other.streck
+      comment: "An instant is a calendric date then a local time."
+      scope: program.instant.streck
   
   country_code:
     - match: \b(ABW|AFG|AGO|ALB|NOR|SWE|USA|ZMB|ZWE)
@@ -101,19 +95,23 @@ contexts:
       scope: keyword.control.streck
   
   keyword_lineartime:
-   - match: \b(SCHEDULE|DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING|DROP\-SCHEDULE)\b
+   - match: \b(SCHEDULE|STARTING|OCCURING|ENDING|DROP\-SCHEDULE)\b
+     scope: keyword.control.streck
+  
+  keyword_constructist:
+   - match: \b(CREATE|NAMED|TRADING|IN|RESIDENT|IS|WITH\-ENTITY|TO)\b
      scope: keyword.control.streck
   
   function_definition:
    - match: \b(FUNCTION)\b
-     scope: keyword.declaration.streck
+     scope: keyword.definition.function.streck
   
   keyword_schedule:
-   - match: \b(DISPLAY|TABLE|FROM|STARTING|OCCURING|ENDING)\b
+   - match: \b(DISPLAY|FROM)\b
      scope: keyword.control.streck
   
-  keyword_constructist:
-   - match: \b(CREATE|ENTITY|NAMED|TRADING|IN|RESIDENT|ACCOUNT|IS|WITH\-ENTITY|TO)\b
+  keyword_physical:
+   - match: \b(ENTITY|ACCOUNT|TABLE)\b
      scope: keyword.control.streck
   
   keyword_logic_operation:
@@ -128,7 +126,11 @@ contexts:
    - match: \b(DO|IF|THEN|ELSE|END|BEFORE)\b
      scope: keyword.control.conditional.streck
   
+  keyword_symbols:
+   - match: \b(VAR|RETURN)\b
+     scope: keyword.global₋symbolic.streck
+
   keyword_natural:
-   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|VAR|SET|RETURN)\b
+   - match: \b(BOOKKEEP|DEBET|CREDIT|COMMENT|WITH|PRINT|BREAK|SET)\b
      scope: keyword.control.streck
 
