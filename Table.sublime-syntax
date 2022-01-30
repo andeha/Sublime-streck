@@ -9,10 +9,10 @@ version: 2
 contexts:
 
   main:
+    - include: comment
     - include: keyword
     - include: keyword_operation
     - include: string
-    - include: comment
     - include: ident
   
   string:
