@@ -101,4 +101,3 @@ class CompletionListener(sublime_plugin.EventListener):
        ], 0)
      
      return completions
-
