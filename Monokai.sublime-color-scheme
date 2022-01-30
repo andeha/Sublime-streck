@@ -1,0 +1,120 @@
+{
+   "name": "Silver extension to the Monokai color scheme",
+   
+   "variables":
+   {
+     "orange": "rgb(255,213,0)",
+     "carrot": "rgb(241,162,72)",
+     "surplus": "rgb(231,219,116)",
+     "voltage": "rgb(70,120,155)",
+     "antracit₋unison": "rgb(242,242,242)",
+     "minor₋seventh": "rgb(186,186,186)",
+     "thirteenth": "rgb(173,173,173)",
+   },
+   
+   "rules":
+   [
+     {
+       "name": "Eye-catch statement keyword",
+       "foreground": "var(minor₋seventh)",
+       "scope": "keyword.control.streck",
+     },
+     {
+       "name": "Detailed keyword",
+       "foreground": "rgb(216,222,233)",
+       "scope": "keyword.operator.streck",
+     },
+     {
+       "name": "Constructive keyword",
+       "foreground": "var(thirteenth)",
+       "scope": "keyword.control.toned.streck",
+     },
+     {
+       "name": "Pedal",
+       "foreground": "lemonchiffon",
+       "scope": "keyword.control.conditional.streck",
+     },
+     {
+       "name": "The 'FUNCTION' keyword",
+       "foreground": "orchid",
+       "font_style": "italic",
+       "scope": "keyword.definition.function.streck",
+     },
+     {
+       "name": "Instant", 
+       "foreground": "var(voltage)",
+       "scope": "program.instant.streck",
+     },
+     {
+       "name": "Monetary",
+       "foreground": "var(carrot)",
+       "scope": "constant.numeric.integer.monetary.streck",
+     },
+     {
+       "name": "Public identifier",
+       "foreground": "rgb(216,222,233)",
+       "scope": "constant.language.streck",
+     },
+     {
+       "name": "Inner identifier",
+       "foreground": "rgb(216,222,233)",
+       "scope": "variable.other.streck",
+     },
+     {
+       "name": "Key",
+       "foreground": "rgb(216,222,233)",
+       "scope": "support.constant.streck",
+     },
+     {
+       "name": "Single-quoted Unicode textual constant",
+       "foreground": "oldlace",
+       "scope": "string.quoted.single.streck",
+     },
+     {
+       "name": "Built-in function",
+       "foreground": "antiquewhite",
+       "scope": "support.function.streck",
+     },
+     {
+       "name": "Built-in constant",
+       "foreground": "cornsilk",
+       "scope": "support.constant.streck",
+     },
+     {
+       "name": "Cyclicity constant",
+       "foreground": "cornsilk",
+       "scope": "support.constant.streck",
+     },
+     {
+       "name": "One-line comment",
+       "font_style": "italic",
+       "foreground": "whitesmoke",
+       "scope": "comment.line.streck",
+     },
+     {
+       "name": "Block-line comment",
+       "font_style": "italic",
+       "foreground": "whitesmoke",
+       "scope": "comment.block.streck",
+     },
+     {
+       "name": "Implicit-and-binding",
+       "foreground": "lavenderblush",
+       "scope": "keyword.global₋symbolic.streck",
+     },
+     {
+       "name": "Fixed definition",
+       "foreground": "rgb(15,51,97)",
+       "scope": "keyword.intrinsics.function.streck",
+     },
+   ],
+   
+   "globals":
+   {
+     "forground": "antiquewhite",
+     "background": "rgb(38,38,38)",
+     "caret": "white",
+   },
+   
+}
+
