@@ -3,7 +3,7 @@
 name: Streck language
 uuid: e5a8a9c4-cb71-4006-84a5-30a3ad8553fe
 file_extensions: [streck]
-hidden_file_extensions: [before event]
+hidden_file_extensions: [event before]
 scope: source.streck
 version: 2
 
