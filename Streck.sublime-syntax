@@ -87,7 +87,7 @@ contexts:
       scope: support.function.streck
   
   cyclicity:
-    - match: \b(BI\-ENNIAL|QUADRENNIAL|ANNUAL|BI\-MONTHLY|MONTHLY|WEEKLY|DAILY|HOURLY|BI\-HOURLY)\b
+    - match: \b(BI\-ENNIAL|QUADRENNIAL|ANNUAL|BI\-MONTHLY|MONTHLY|WEEKLY|DAILY)\b
       scope: constant.language.streck 
   # Conflation: 'occuring-every' alternatively 'lasting-for'.
   # not 'intervallic with constant duration' a․𝘬․a 'regular periods of time'.
