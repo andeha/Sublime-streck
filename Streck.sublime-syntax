@@ -17,7 +17,7 @@ variables:
 contexts:
 
   main:
-    - match: "/\\*"
+    - match: "/\\*" # not sorted patterns. Nesting unresolved.
       scope: punctuation.definition.comment.streck
       push:
         - meta_scope: comment.block.streck
@@ -87,8 +87,12 @@ contexts:
       scope: support.function.streck
   
   cyclicity:
-    - match: \b(MONTHLY|HOURLY|BI\-HOURLY)\b
-      scope: constant.language.streck
+    - match: \b(BI\-ENNIAL|QUADRENNIAL|ANNUAL|BI\-MONTHLY|MONTHLY|WEEKLY|DAILY|HOURLY|BI\-HOURLY)\b
+      scope: constant.language.streck 
+  # Conflation: 'occuring-every' alternatively 'lasting-for'.
+  # not 'intervallic with constant duration' a․𝘬․a 'regular periods of time'.
+  # 𝘦․𝘨 'for 5 minutes UNTIL|STARTING' and BI-ENNIAL=occurring every two 
+  # years/continuing or lasting for two years.
   
   keyword_superfluous:
     - match: \b(EXCHANGE|RATE|CURRENCY)\b
