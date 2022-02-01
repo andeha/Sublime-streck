@@ -91,8 +91,8 @@ contexts:
       scope: constant.language.streck 
   # Conflation: 'occuring-every' alternatively 'lasting-for'.
   # not 'intervallic with constant duration' a․𝘬․a 'regular periods of time'.
-  # 𝘦․𝘨 'for 5 minutes UNTIL|STARTING' and BI-ENNIAL=occurring every two 
-  # years/continuing or lasting for two years.
+  # 𝘦․𝘨 'for 5 minutes UNTIL|STARTING' and BI-ENNIAL='occurring every two 
+  # years/continuing' alternatively 'lasting for two years'.
   
   keyword_superfluous:
     - match: \b(EXCHANGE|RATE|CURRENCY)\b
