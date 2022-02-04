@@ -1,0 +1,9 @@
+{
+  "dependencies": [],
+  "sublime_text": "*",
+  "platforms": ["*"],
+  "description": "A Sublime Text package for the .streck and .table languages.",
+  "version": "1.0.0",
+  "url": "https://github.com/andeha/Turbin-sublime",
+}
+
