@@ -107,7 +107,7 @@ contexts:
      scope: keyword.control.streck
   
   function_definition:
-   - match: \b(FUNCTION)\b
+   - match: \b(TRANSCRIPT)\b
      scope: keyword.definition.function.streck
   
   keyword_schedule:
